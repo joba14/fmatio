@@ -1,0 +1,24 @@
+
+cmake_minimum_required(VERSION 3.3)
+project("fmatio" LANGUAGES C CXX)
+
+set(CXXTLIB_INCLUDE_DIRECTORY
+	"${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+file(GLOB CXXTLIB_HEADER_FILES
+	"${CXXTLIB_INCLUDE_DIRECTORY}/fmatio.hpp"
+)
+
+add_library(${PROJECT_NAME} INTERFACE)
+
+target_include_directories(${PROJECT_NAME}
+	INTERFACE
+		$<INSTALL_INTERFACE:include>
+		$<BUILD_INTERFACE:${CXXTLIB_INCLUDE_DIRECTORY}>
+)
+
+add_subdirectory(tests)
